@@ -12,7 +12,6 @@ class TimeSeries():
         self.sells = pd.DataFrame()
         self.close_wins = pd.DataFrame()
         self.close_loses = pd.DataFrame()
-
         self.resampled_prices = None
 
     def add_tick_event(self, event):

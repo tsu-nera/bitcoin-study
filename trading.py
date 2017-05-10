@@ -4,6 +4,7 @@ import queue
 
 from streaming import StreamingPrices
 from manager import Manager
+from timeseries import TimeSeries
 
 heartbeat = 0.5
 
@@ -19,13 +20,14 @@ def on_tick(events, manager):
 
 if __name__ == "__main__":
     events = queue.Queue()
+    timeseries = TimeSeries()
 
     price_src = StreamingPrices(events)
 
     status = dict() 
     status["is_sim"] = False
 
-    manager = Manager(status)
+    manager = Manager(status, timeseries)
 
     trade_thread = threading.Thread(target=on_tick,
                                     args=[events, manager])
